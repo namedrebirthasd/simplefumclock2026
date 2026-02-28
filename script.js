@@ -41,13 +41,15 @@ const weeklySchedule = {
     SUNDAY: {
         title: "予定なしの日かも",
         items: [
+            "",
             ""
         ]
     },
     MONDAY: {
         title: "たまにヘルパーが訪問する日かも",
         items: [
-            "12:40頃に来るかも？"
+            "12:40頃に来るかも？",
+            ""
         ]
     },
     TUESDAY: {
@@ -70,7 +72,6 @@ const weeklySchedule = {
         items: [
             "09:00頃に送迎車が来る",
             "15:00頃に終わる予定"
-
         ]
     },
     SATURDAY: {
@@ -438,7 +439,11 @@ let bgm = new Audio();
 const bgmNames = {
     "bgm_001.mp3": "昼と夜の境界",
     "bgm_002.mp3": "コーヒー・ルンバ　西田佐知子",
-    "bgm_003.mp3": "川の流れのように"
+    "bgm_003.mp3": "サン・トワ・マミー 越路吹雪",
+    "bgm_004.mp3": "オー・シャンゼリゼ 越路吹雪",
+    "bgm_005.mp3": "上を向いて歩こう 坂本 九",
+    "bgm_006.mp3": "長渕剛／順子 （1980年）",
+    "bgm_007.mp3": "",
 };
 
 function getBgmTitle(file) {
