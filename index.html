@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Simple Fun Clock</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+
+        <div id="bg-filter"></div>
+
+        <div id="container">
+            <div id="date"></div>
+            <div id="time"></div>
+
+            <div id="schedule-wrapper">
+                <div id="today" class="box"></div>
+                <div id="tomorrow" class="box"></div>
+            </div>
+
+        </div>
+
+        <!-- カットイン式予定プログラム（2026/03/01時点動作不良） -->
+        <div id="schedule-cutin" class="cutin-hidden"></div>
+
+        <div id="controls">
+            <button id="viewBtn"
+                onclick="playClick(); showViewer()">画像を拡大</button>
+            <button onclick="playClick(); changeBackground()">画像変更</button>
+            <button onclick="playClick(); toggleRandomMode()"
+                id="modeBtn">順番モード</button>
+            <div>🖼<input type="range" id="bgRange" min="0" max="100"
+                    value="30"></div>
+            <div>🎵<input type="range" id="seVolume" min="0" max="100"
+                    value="100"></div>
+        </div>
+
+        <audio id="seClick" src="sounds/se_click.mp3" preload="auto"></audio>
+        <audio id="seSwipe" src="sounds/se_swipe.mp3" preload="auto"></audio>
+
+        <div id="viewer" onclick="hideViewer()"></div>
+
+        <!-- 左下ハンバーガーボタン -->
+        <div id="menuButton">≡</div>
+
+        <!-- 左側スライドインメニュー -->
+        <div id="menuPanel">
+            <div id="menuTabs">
+                <button data-tab="schedule">予定</button>
+                <button data-tab="gallery">ギャラリー</button>
+                <button data-tab="sound">音</button>
+                <button onclick="toggleFullscreen()">全画面</button>
+            </div>
+
+            <div id="menuContent">
+                <!-- タブ切り替えで内容が入る -->
+            </div>
+        </div>
+        <div id="schedule-cutin" class="cutin-hidden"></div>
+        <!-- ★★★ ここに移動 ★★★ -->
+        <script src="script.js"></script>
+
+    </body>
+</html>

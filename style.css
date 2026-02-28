@@ -1,0 +1,301 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url("images/bg_001.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #888888;
+    font-family: sans-serif;
+    color: white;
+    text-align: center;
+}
+
+html {
+    font-size: calc(var(--vh) * 1);
+}
+
+html, body {
+    height: 100%;
+}
+
+/* 白フィルター（UIの下に固定） */
+#bg-filter {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.3);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* UI本体 */
+#container {
+    position: relative;
+    padding-top: 1vmin;
+    padding-bottom: 1vmin;
+    justify-content: flex-start;
+    z-index: 10;
+}
+
+/* 4段縦並び */
+#schedule-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1vmin;
+    width: 100%;
+    align-items: center;
+}
+
+/* 本日・明日パネルの幅 */
+#schedule-wrapper .box {
+    max-width: 80%;
+    min-width: 45%;
+}
+
+/* controls（右下固定） */
+#controls {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    transform: none;
+    z-index: 20;
+}
+
+/* フォントサイズ（ver1.2） */
+#date { font-size: 10vmin; }
+#time { font-size: 10vmin; }
+.box h2 { font-size: 6vmin; }
+.box li { font-size: 5vmin; }
+
+/* 黒パネル */
+.box {
+    background: rgba(0, 0, 0, 0.7);
+    margin: 0.5vmin 0;
+    padding: 1vmin;
+    border-radius: 10px;
+}
+
+/* リスト */
+.box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 日付と時間の背景 */
+#date, #time {
+    background: rgba(0,0,0,0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 1vmin;
+}
+
+/* 画像ビューア */
+#viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: rgba(0,0,0,0.8);
+    display: none;
+    z-index: 9999;
+}
+
+/* 左下ハンバーガー */
+#menuButton {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 50%;
+    color: white;
+    font-size: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 30;
+    cursor: pointer;
+}
+
+/* 左スライドメニュー */
+#menuPanel {
+    position: fixed;
+    top: 0;
+    left: -50%;
+    width: 50%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    transition: left 0.3s ease;
+    z-index: 25;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+}
+
+/* メニュータブ */
+#menuTabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+#menuTabs button {
+    flex: 1;
+    padding: 10px;
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    font-size: 4vmin;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editable {
+    padding: 5px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.editable input {
+    width: 100%;
+    font-size: 4vmin;
+    padding: 5px;
+}
+
+
+.gallery-thumb {
+    width: 30%;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+
+.sound-section-title {
+    font-size: 4vmin;
+    margin: 8px 0;
+}
+
+.sound-button-row button {
+    font-size: 3.5vmin;
+    margin: 3px;
+}
+
+.sound-list-item {
+    padding: 5px;
+    margin: 3px 0;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.1);
+    cursor: pointer;
+}
+
+
+.calendar-container {
+    background: white;
+    color: black;
+    padding: 8px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+}
+
+.calendar-cell {
+    text-align: center;
+    font-size: 4vmin;
+    padding: 6px 0;
+    border-radius: 6px;
+}
+
+.calendar-today {
+    background: #007bff;
+    color: white;
+    font-weight: bold;
+    border: 2px solid #004a99;
+}
+
+
+
+
+/* 画面全体カットインのベース */
+/* カットイン式予定プログラム（2026/03/01時点動作不良） */
+#schedule-cutin {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 2147483647; /* 最大値 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  pointer-events: none; /* 裏は触れる */
+  transition: opacity 2s linear;
+}
+
+/* 内側コンテナ（中央寄せ用） */
+#schedule-cutin .cutin-inner {
+  width: 100%;
+  text-align: center;
+}
+
+/* テキスト全体（文字フェード用） */
+#schedule-cutin .cutin-text {
+  color: #fff;
+  font-size: 8vmin;
+  line-height: 1.4;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity 1.5s linear; /* 背景より少し遅れて出す／消す */
+}
+
+/* タイトル・サブタイトル・リスト */
+#schedule-cutin .cutin-title {
+  margin: 0 0 0.5em;
+}
+
+#schedule-cutin .cutin-subtitle {
+  margin: 0 0 0.5em;
+  font-size: 0.7em; /* 同じ8vmin基準で少しだけ小さく */
+}
+
+#schedule-cutin .cutin-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 非表示状態（デフォルト） */
+.cutin-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 表示状態（JSで付け外しするクラス想定） */
+.cutin-visible {
+  opacity: 1;
+  pointer-events: auto; /* 触れても何も起きないが一応 */
+}
+
+/* 背景フェードイン後に文字を出す用（JSでタイミング制御） */
+.cutin-text-visible {
+  opacity: 1;
+}
