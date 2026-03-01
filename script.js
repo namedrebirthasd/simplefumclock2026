@@ -121,6 +121,11 @@ function updateClock() {
         tomorrowBox.style.opacity = 1;
     }
 
+    // 月齢処理（ここに入れる）
+    const age = getMoonAge(now);
+    const icon = getMoonIcon(age);
+    document.getElementById("moon").textContent = icon;
+
 
 }
 
@@ -131,6 +136,35 @@ setInterval(() => {
 
 updateClock();
 renderSchedules(); // ← これを追加した（ver1.6 2026/03/01）
+
+
+
+// ===============================
+// 月齢計算（軽量アルゴリズム
+// ===============================
+function getMoonAge(date) {
+    const synodicMonth = 29.53058867;
+    const knownNewMoon = new Date("2000-01-06T18:14:00Z");
+    const days = (date - knownNewMoon) / 86400000;
+    const age = days % synodicMonth;
+    return age < 0 ? age + synodicMonth : age;
+}
+
+
+function getMoonIcon(age) {
+
+    if (age < 1.84566) return "🌑";
+    if (age < 5.53699) return "🌒";
+    if (age < 9.22831) return "🌓";
+    if (age < 12.91963) return "🌔";
+    if (age < 16.61096) return "🌕";
+    if (age < 20.30228) return "🌖";
+    if (age < 23.99361) return "🌗";
+    if (age < 27.68493) return "🌘";
+    return "🌑";
+}
+
+
 
 
 
@@ -381,7 +415,6 @@ function showCutin() {
 setInterval(() => {
     showCutin();
 }, cutinInterval);
-
 
 
 // -------------------------------

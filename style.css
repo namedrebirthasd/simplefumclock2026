@@ -299,3 +299,10 @@ html, body {
 .cutin-text-visible {
   opacity: 1;
 }
+
+
+#moon {
+    font-size: 8vmin;   /* ここを調整 */
+    line-height: 1;
+    display: inline-block;
+}
