@@ -61,11 +61,17 @@ const weeklySchedule = {
     },
     WEDNESDAY: {
         title: "予定なしの日かも",
-        items: []
+        items: [
+            "",
+            ""
+        ]
     },
     THURSDAY: {
         title: "予定なしの日かも",
-        items: []
+        items: [
+            "",
+            ""
+        ]
     },
     FRIDAY: {
         title: "たのしいデイたなべの日",
